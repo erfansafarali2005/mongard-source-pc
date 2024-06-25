@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import pika
 
 credentials = pika.PlainCredentials('guest' , 'guest')
@@ -20,7 +19,7 @@ for k,v in messages.items():
     ch.basic_publish(exchange='topic_logs' , routing_key=k , body=v)
 
 print('sent message ..')
-=======
+
 import pika
 
 credentials = pika.PlainCredentials('guest' , 'guest')
@@ -42,5 +41,5 @@ for k,v in messages.items():
     ch.basic_publish(exchange='topic_logs' , routing_key=k , body=v)
 
 print('sent message ..')
->>>>>>> 0a1e8d14f3bcf356f7d22729fa32779236fb71d5
+
 connection.close()

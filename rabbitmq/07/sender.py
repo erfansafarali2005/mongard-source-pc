@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import pika
 import time
 
@@ -21,7 +21,6 @@ ch.basic_publish(exchange='' , routing_key='one' , body='Hello world' , properti
    headers={'name' : 'amir' , 'age' : '30'}, #headers must be map , can be used when using header exchange method
 ))
 print('message send...')
-=======
 import pika
 import time
 
@@ -44,5 +43,4 @@ ch.basic_publish(exchange='' , routing_key='one' , body='Hello world' , properti
    headers={'name' : 'amir' , 'age' : '30'}, #headers must be map , can be used when using header exchange method
 ))
 print('message send...')
->>>>>>> 0a1e8d14f3bcf356f7d22729fa32779236fb71d5
 connection.close()
