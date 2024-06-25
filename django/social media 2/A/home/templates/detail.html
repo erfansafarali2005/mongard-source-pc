@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+
+{% block title %} Detail page {% endblock title %}
+
+
+{% block content %}
+
+    {% if request.user.id == post.user.id %}
+    {#     ^-> owner of login |  ^-> owner of post #}
+    <a href="{% url 'home:post_delete' post.id %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'home:post_update' post.id %}" class="btn btn-info">Update</a>
+    {% endif %}
+  <p><a href="{% url 'account:user_profile' post.id %}">{{ post.user.username }} - {{ user.created|date:'Y-M' }}</a></p>
+                                                             {# ^-> post.user -> to show the user of the post (if no user -> it shows the loggined user as the owner) #}
+
+
+  <p>{{ post.body }}</p>
+
+
+{% endblock content %}

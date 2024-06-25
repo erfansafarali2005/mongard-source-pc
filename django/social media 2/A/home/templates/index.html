@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+
+{% block title %} Index page {% endblock title %}
+
+
+{% block content %}
+
+<div class="card">
+
+ {% for post in posts %}
+
+    <a href="{{ post.get_absolute_url }}" class="card-body">{{ post.body |truncatewords:8 }}</a>
+                                                                                              {# ^ : it filter the length of the preview of body to 8 characters #}
+
+
+ {% endfor %}
+
+
+
+</div>
+
+{% endblock content %}

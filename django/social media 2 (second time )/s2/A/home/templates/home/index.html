@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Index page {% endblock title %}
+
+{% block content %}
+
+    <form action="" method="get">
+
+        {{ form.as_p }}
+
+        <input type="submit" value="Search">
+
+    </form>
+
+    <h1>Home page</h1>
+    <div class="card">
+        {% for post in posts %}
+
+            <a style="color: red;" href="{% url 'account:user_profile' post.user.id %}">{{post.user}}</a>
+            <a style="color: green;" href="{{post.get_absolute_url}}">{{post.body |truncatewords:8}}</a>
+
+        {% endfor %}
+    </div>
+
+
+
+{% endblock content %}

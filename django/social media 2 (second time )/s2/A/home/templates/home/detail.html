@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Index page {% endblock title %}
+
+{% block content %}
+
+    {% if request.user.is_authenticated %}
+        <a class="btn btn-primary col-md-2" href="{% url 'home:post_like' post.id %}" >Like {{ post.likes_count }}</a><hr>
+        <a class="btn btn-danger" href="{% url 'home:post_delete' post.id %}">Delete</a>
+        
+        {% if request.user.id == post.user.id %}
+            <a class="btn btn-info" href="{% url 'home:post_update' post.id %}">Update</a>
+        {% endif %}
+    {% endif %}
+    <a style="color: red;" href="{% url 'account:user_profile' post.user.id %}">{{post.user}}</a><hr>
+    <p>{{post.user.username}}</p><hr>
+    <p>{{post.body}}</p><hr>
+    <small>{{post.created | date:"Y-M-D"}}</small><hr>
+    <small>{{post.updated | date:"Y-M-D"}}</small><hr>
+
+
+    {% if request.user.is_authenticated %}
+
+        <form action=""  method="post">
+
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Comment">
+
+        </form>
+
+    {% else %}
+
+        <p class="alert alert-danger">Only loggined users can post a comment pleaes <a href='{% url 'account:user_login' %}'>Login</a></p>
+
+    {% endif %}
+
+    <p>{{ comments.count }} comments</p>
+
+    {% for comment in comments %}
+
+        <div class="card bg-dark text-white">
+
+            <p class="card-header">{{comment.user}} | {{comment.created}} | {{ comment.created | timesince }} ago</p>
+            <p class="card-body">{{ comment.body }}</p>
+
+            {% if request.user.is_authenticated %}
+
+
+
+                <form action="{% url 'home:add_reply' post.id comment.id %}" method="POST">
+                    {% csrf_token %}
+                    {{ reply_form.as_p }}
+                    <input type="submit" value="comment a reply">
+
+                </form>
+
+            {% endif %}
+
+            {% with replies=comment.rcomments.all %}                           <!-- with context manager we save the performance of looping into database everytime for commnets -->
+                {% for reply in replies %}
+                    <p class="bg-primary p-3 m-2">{{ reply.user }} <br> {{ reply.body }}</p>
+                {% endfor %}
+            {% endwith %}
+        </div><br>
+
+    {% empty %}
+
+        <p>no comments yet</p>
+
+    {% endfor %}
+
+
+
+
+{% endblock content %}
