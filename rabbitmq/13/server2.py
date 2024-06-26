@@ -10,7 +10,7 @@ ch.queue_bind('mongard' , 'z') #queue is connected to the relative exchange
 
 
 def callback(ch , method , properties , body):
-    print(f'recieved in server1 : {body}')
+    print(f'recieved in server2 : {body}')
 
 ch.basic_consume(queue='mongard' , auto_ack=True , on_message_callback=callback)
 print('start consuming ..')

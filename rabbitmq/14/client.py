@@ -5,10 +5,10 @@ connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost' 
 ch = connection.channel()
 
 ch.exchange_declare(exchange='alt' , exchange_type='fanout') # alternative exchange
-ch.exchange_declare(exchange='main' , exchange_type='direct')# main exchange         
+ch.exchange_declare(exchange='main' , exchange_type='direct' , arguments= {'alternate-exchange' : 'alt'}) # main exchange    | alternate-exchange is ghardady       
 
 
-ch.basic_publish(exchange='mian' , routing_key='home' , body='hello world')
+ch.basic_publish(exchange='main' , routing_key='home' , body='hello world')
 
 print('sent')
 

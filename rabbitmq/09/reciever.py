@@ -16,7 +16,7 @@ result = ch.queue_declare(queue='',exclusive=True) #if qeueu name is empty it cr
 
 ### now we should connect that queue to the exchange with binding ###
 
-ch.queue_bind(exchange='logs' , queue='result.method.queue')
+ch.queue_bind(exchange='logs' , queue=result.method.queue)
 
 print('wating for logs ...')
 print(result.method.queue)
