@@ -50,6 +50,10 @@ class UserLoginView(View):
         self.next = request.GET.get('next' , None) #sm is comming from the url in the name of next if not exists , return None
         return super().setup(request , *args , **kwargs)
 
+
+    # !!!! see profile is loginreqaueredmixin , when someone click on the others profile , it redirects into login so we dont want that
+    # now we check if there was any next , redirect it to the next , if it wasn't just go on !
+
     def dispatch(self , request , *args , **kwargs):
         if request.user.is_authenticated :
             messages.error(request , 'you are already loggined' , 'danger')
