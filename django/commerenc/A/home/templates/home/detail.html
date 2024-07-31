@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Detail Page  {% endblock title %}
+
+{% block extra_headers %}
+
+
+{% endblock extra_headers %}
+
+{% block content %}
+
+    <h2>{{product.name}}</h2>
+    <small> {{product.created}} </small><br>
+    <p>{{product.price}}toman</p>
+    <img src="{{product.image.url}}" style="width: 300px" alt="...">
+    <p>{{product.description}}</p>
+
+{% endblock content %}
