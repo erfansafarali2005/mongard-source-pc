@@ -12,6 +12,6 @@ def send_otp_code(phone_number , code):
         print(response)
 
     except APIException as e :
-        print(e)
+        print(f' API Exception error : {e}')
     except HTTPException as e :
-        print(e)
+        print(f' HTTP Exception error : {e}')
