@@ -1,11 +1,11 @@
 from django.shortcuts import render , get_object_or_404 , redirect
 from django.views import  View
 from .models import Product , Category
-
 from . import tasks
 from django.contrib import messages
 from django.contrib.auth.mixins import UserPassesTestMixin
 from utils import IsAdminUserMixin
+from orders.forms import CartAddForm
 
 class HomeView(View):
     template_name = 'home/home.html'
@@ -23,7 +23,8 @@ class HomeView(View):
 class ProductDetailView(View):
     def get(self, request, slug):
         product = get_object_or_404(Product, slug=slug)
-        return render(request , 'home/detail.html' , {'product':product})
+        form = CartAddForm()
+        return render(request , 'home/detail.html' , {'product':product , 'form':form})
 
 
 class BucketHome(IsAdminUserMixin,View ):

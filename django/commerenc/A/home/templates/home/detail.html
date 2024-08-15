@@ -14,5 +14,12 @@
     <p>{{product.price}}toman</p>
     <img src="{{product.image.url}}" style="width: 300px" alt="...">
     <p>{{product.description}}</p>
+    <br>
+
+    <form action="{% url 'orders:cart_add' product.id %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="add to cart"> <!-- dont put that fucking name in attributes -->
+    </form>
 
 {% endblock content %}
