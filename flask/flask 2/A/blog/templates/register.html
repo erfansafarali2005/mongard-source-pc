@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Register {% endblock title %}
+
+{% block content %}
+
+
+
+
+<form action="" method="POST" novalidate>
+    {{form.csrf_token}}
+    {{form.username.label}} {{form.username(class='form-control')}}
+    {{form.email.label}} {{form.email(class='form-control')}}
+    {{form.password.label}} {{form.password(class='form-control')}}
+    {{form.username.label}} {{form.confirm_password(class='form-control')}}
+
+    <input type="submit" value="Submit">
+</form>
+
+
+
+{% endblock content %}

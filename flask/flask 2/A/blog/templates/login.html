@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock title %}
+
+{% block content %}
+
+
+
+
+<form action="" method="POST" novalidate>
+    {{form.csrf_token}}
+    {{form.email.label}} {{form.email(class='form-control')}}
+    {{form.password.label}} {{form.password(class='form-control')}}
+    {{form.remember.label}} {{form.remember(class='form-control')}}
+
+    <input type="submit" value="Submit">
+</form>
+
+
+
+{% endblock content %}
